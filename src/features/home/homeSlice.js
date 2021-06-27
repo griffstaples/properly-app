@@ -1,0 +1,3 @@
+/*
+Redux Slicer for the Home component
+*/
