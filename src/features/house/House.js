@@ -1,8 +1,6 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { HouseImageReel } from "../houseImageReel/HouseImageReel";
 import { HouseDescription } from "../houseDescription/HouseDescription";
-
-import styles from "./House.module.css";
 
 export function House(props) {
   const house = props.house;

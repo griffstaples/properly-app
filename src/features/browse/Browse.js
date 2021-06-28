@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-
+import { useSelector, useDispatch } from "react-redux";
+import { setHousesReducer, selectHouses } from "./browseSlice";
+import { HouseList } from "../houseList/HouseList";
+import styles from "./Browse.module.css";
 import {
   Container,
   Row,
@@ -9,18 +12,22 @@ import {
   Button,
 } from "react-bootstrap";
 
-import { HouseList } from "../houseList/HouseList";
-import styles from "./Browse.module.css";
-
 export function Browse() {
-  var address = "";
-  const [houses, setHouses] = useState([]);
+  const dispatch = useDispatch();
 
-  const getNearbyHouses = (address) => {
-    fetch("api/houses")
+  //get store and initialize state
+  const houses = useSelector(selectHouses);
+  const [address, setAddress] = useState("");
+
+  const getNearbyHouses = (myAddr) => {
+    fetch(`api/houses/${myAddr}`)
       .then((res) => res.json())
       .then((data) => {
-        setHouses(data.houses);
+        if (Array.isArray(data.houses)) {
+          dispatch(setHousesReducer(data.houses));
+        } else {
+          dispatch(setHousesReducer([data.houses]));
+        }
       });
   };
 
@@ -37,6 +44,7 @@ export function Browse() {
                 type="text"
                 placeholder="Enter Address"
                 className="mr-sm-2"
+                onChange={(e) => setAddress(e.target.value)}
               />
             </Row>
             <br />

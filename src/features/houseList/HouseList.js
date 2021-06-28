@@ -1,4 +1,4 @@
-import { Container, Row, Col, ListGroup } from "react-bootstrap";
+import { Container, ListGroup } from "react-bootstrap";
 import { House } from "../house/House";
 
 export function HouseList(props) {

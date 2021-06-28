@@ -58,8 +58,14 @@ createServer({
   routes() {
     this.namespace = "api";
 
-    this.get("/houses/", (schema, request) => {
-      return schema.houses.all();
+    this.get("/houses/:address/", (schema, request) => {
+      let myAddress = request.params.address;
+      let house = schema.houses.findBy({ address: myAddress });
+      if (house) {
+        return house;
+      } else {
+        return schema.houses.all();
+      }
     });
   },
 });

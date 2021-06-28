@@ -10,13 +10,23 @@ export function HouseDescription(props) {
         <h3>{house.address}</h3>
       </Row>
       <Row>
-        <ui>
-          <li>Square Feet: {house.squarefootage} sqft</li>
-          <li>Bedrooms: {house.rooms.numberOfBedrooms}</li>
-          <li>Bathrooms: {house.rooms.numberOfBathrooms}</li>
-          <li>Backyard: {house.hasBackyard ? "Yes" : "No"}</li>
-          <li>Parking: {house.hasParking ? "Yes" : "No"}</li>
-        </ui>
+        <div className={styles.badgeContainer}>
+          <div className={styles.badge}>
+            Square Feet: {house.squarefootage} sqft
+          </div>
+          <div className={styles.badge}>
+            Bedrooms: {house.rooms.numberOfBedrooms}
+          </div>
+          <div className={styles.badge}>
+            Bathrooms: {house.rooms.numberOfBathrooms}
+          </div>
+          <div className={styles.badge}>
+            Backyard: {house.hasBackyard ? "Yes" : "No"}
+          </div>
+          <div className={styles.badge}>
+            Parking: {house.hasParking ? "Yes" : "No"}
+          </div>
+        </div>
       </Row>
     </Container>
   );
